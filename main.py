@@ -13,14 +13,12 @@ def main():
     sala_de_espera_1 = [] #almaceno los que estan en sala de espera y en cola para entrar a la aduana
     cola_aduana = []    #
 
-    cabina_aduana_0 = None #almacenaré el tiempo en el que termino de atender a los pasajeros que estan en estas cabinas
-    cabina_aduana_1 = None #
+    cabina_aduana = [None, None] #almacenaré el tiempo en el que termino de atender a los pasajeros que estan en estas cabinas
 
     sala_de_espera_2 = [] #almaceno los que estan en sala de espera final
 
     cola_frontera = [] #almaceno los que estan en cola para la frontera
-    cabina_frontera_0 = None #almacenaré el tiempo en el que termino de atender a los pasajeros que estan en estas cabinas
-    cabina_frontera_1 = None #
+    cabina_frontera = [None, None] #almacenaré el tiempo en el que termino de atender a los pasajeros que estan en estas cabinas
 
     #lista de pasajeros que deben abordar
     lista_pasajeros = {
@@ -35,15 +33,15 @@ def main():
 
     #region funcionamiento del aeropuerto
 
-    for elapsed_time in range(60): #elapsed_time son los minutos que han pasado desde que se abre el aeropuerto
+    for elapsed_time in range(600): #elapsed_time son los minutos que han pasado desde que se abre el aeropuerto
         #llegan los pasajeros y entran a la sala de espera 
         gf.pasan_a_sala_de_espera(lista_pasajeros, sala_de_espera_1, elapsed_time)
 
         #dos horas antes de las 11 y las 2 paso a los pasajeros de la sala de espera a la aduana y de ahi a la sala de espera 2
-        gf.pasan_a_aduana(sala_de_espera_1, cola_aduana, cabina_aduana_0, cabina_aduana_1, sala_de_espera_2, elapsed_time)
+        gf.pasan_a_aduana(sala_de_espera_1, cola_aduana, cabina_aduana, sala_de_espera_2, elapsed_time)
 
         #a las 11 y a las 2 bajo a los pasajeros de los aviones que llegaron a la frontera
-        gf.pasan_a_frontera(avion, cola_frontera, cabina_frontera_0, cabina_frontera_1, elapsed_time)
+        gf.pasan_a_frontera(avion, cola_frontera, cabina_frontera, elapsed_time)
 
         #30 min antes de que salgan los vuelos empiezo a montar a los pasajeros en los aviones
         gf.pasan_al_avion(sala_de_espera_2, avion, elapsed_time)
