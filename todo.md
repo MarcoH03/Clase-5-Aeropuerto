@@ -1,7 +1,7 @@
 [X] una funcion que se encargue de la sala de espera cuando llegan los pasajereos al aeropuerto
     -tiene que llenarme la lista de sala de espera con pasajeros 
 
-[] una funcion que se encargue del check-in en aduana
+[x] una funcion que se encargue del check-in en aduana
     -tiene que sacarlos de sala de espera atendiendolos de dos en dos por las dos cabinas que tengo
     -se demoran en cada cabina un tiempo dado (3-10 min)
     -cuando sale de la cabina pasa a ultima sala de espera
