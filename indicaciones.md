@@ -4,6 +4,7 @@ El aeropuerto abre sus portas a las 7am y cierra a las 5pm (600 minutos)
 
 los futuros pasajeros irán llegando al aeropuerto 4h antes del vuelo
 llegan dos vuelos durante el dia uno a las 11am y otro a las 4pm
+vuelven a salir a las 12 y a las 5
 
 ## areas
 la sala de espera 120 personas

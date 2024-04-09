@@ -35,7 +35,7 @@ def main():
 
     #region funcionamiento del aeropuerto
 
-    for elapsed_time in range(600): #elapsed_time son los minutos que han pasado desde que se abre el aeropuerto
+    for elapsed_time in range(60): #elapsed_time son los minutos que han pasado desde que se abre el aeropuerto
         #llegan los pasajeros y entran a la sala de espera 
         gf.pasan_a_sala_de_espera(lista_pasajeros, sala_de_espera_1, elapsed_time)
 
@@ -53,5 +53,5 @@ def main():
     
     #endregion funcionamiento del aeropuerto
 
-if __name__ is "__main__":
+if __name__ == "__main__":
     main()
