@@ -8,8 +8,6 @@ def estado_del_aeropuerto(sala_de_espera_1, cola_aduana, sala_de_espera_2, avion
 
     bigest = max(len(sala_de_espera_1), len(cola_aduana), len(sala_de_espera_2), len(avion), len(cola_frontera))
     #add the while bigest > 0 print the lines with the data
-        
-
 
 
 def pasan_a_sala_de_espera(lista_pasajeros, sala_de_espera_1, elapsed_time): #esta funcion me va pasando a los pasajeros que llegan (random entre 0-3 a la vez) a la sala de espera
