@@ -16,7 +16,7 @@ def estado_del_aeropuerto(sala_de_espera_1, cola_aduana, sala_de_espera_2, avion
     print(f"Avion: {avion}")
     print(f"Cola Frontera: {cola_frontera}")
 
-    time.sleep(0.3)
+    time.sleep(0.1) #tiempo de cada minuto en la pantalla. El adecuado es 0,3 pero para rapido uso 0,1
 
     #bigest = max(len(sala_de_espera_1), len(cola_aduana), len(sala_de_espera_2), len(avion), len(cola_frontera))
     #add the while bigest > 0 print the lines with the data
@@ -35,7 +35,7 @@ def pasan_a_sala_de_espera(lista_pasajeros, sala_de_espera_1, elapsed_time): #es
         
 
 def pasan_a_aduana(sala_de_espera_1, cola_aduana, cabina_aduana, sala_de_espera_2, elapsed_time): #en esta funcion manejo el paso de la sala de espera 1 a la aduana a la sala de espera 2 dos horas antes de los vuelos
-    if (time_in_world(elapsed_time) >= 9) and (time_in_world(elapsed_time) < 11): #si ya estamos a menos de dos horas del primer vuelo pero antes de que despuegue
+    if (time_in_world(elapsed_time) >= 9) and (time_in_world(elapsed_time) <= 11.5): #si ya estamos a menos de dos horas del primer vuelo pero antes de que despuegue
         
         while len(sala_de_espera_1) > 0:
             cola_aduana.append(sala_de_espera_1.pop(0))
@@ -53,7 +53,7 @@ def pasan_a_aduana(sala_de_espera_1, cola_aduana, cabina_aduana, sala_de_espera_
             cabina_aduana[1] = None
 
 
-    if (time_in_world(elapsed_time) >= 12+3) and (time_in_world(elapsed_time) < 12+5): #si ya estamos a menos de dos horas del segundo vuelo pero antes de que despuegue
+    if (time_in_world(elapsed_time) >= 12+3) and (time_in_world(elapsed_time) < 12+4.5): #si ya estamos a menos de dos horas del segundo vuelo pero antes de que despuegue
         while len(sala_de_espera_1) > 0:
             cola_aduana.append(sala_de_espera_1.pop(0))
         
@@ -69,12 +69,12 @@ def pasan_a_aduana(sala_de_espera_1, cola_aduana, cabina_aduana, sala_de_espera_
             sala_de_espera_2.append(cola_aduana.pop(0)) #si ya es la hora de terminar de atender a la persona la paso a la sala de espera 2
             cabina_aduana[1] = None
     
-    if (time_in_world(elapsed_time) == 11) or (time_in_world(elapsed_time) == 5): #si el avion ya despego' vacio la cola de la aduana
-        cola_aduana = []
+    if (time_in_world(elapsed_time) == 12) or (time_in_world(elapsed_time) == 5+12): #si el avion ya despego' vacio la cola de la aduana
+        cola_aduana.clear()
+        sala_de_espera_2.clear()
 
 
 def pasan_a_frontera(avion, cola_frontera, cabina_frontera, elapsed_time): #en esta funcion muevo a los pasajeros qeu llegan del avion a la frontera a las horas adecuadas
-    print("funcion pasan_a_frontera() no implementada")
     if (time_in_world(elapsed_time) == 11) or (time_in_world(elapsed_time) == 12+4): #si es la hora de que llegue el avion, llena la lista de los pasajeros del avion con un numero random de pasajeros
         avion = [f"A_{i}" for i in range(randint(40,60))]
 
@@ -85,13 +85,13 @@ def pasan_a_frontera(avion, cola_frontera, cabina_frontera, elapsed_time): #en e
     if  (len(cola_frontera) > 0): #luego de que todos los pasajeros estan en la cola de frontera los voy atendiendo de dos en dos
         
         if cabina_frontera[0] == None:
-            cabina_frontera[0] = time_in_world(elapsed_time + randint(3,10)) #si la cabina esta vacia le doy una hora a la que termino de atender a una persona
+            cabina_frontera[0] = time_in_world(elapsed_time + randint(3,5)) #si la cabina esta vacia le doy una hora a la que termino de atender a una persona
         elif cabina_frontera[0] <= time_in_world(elapsed_time):
             cola_frontera.pop(0) #si ya es la hora de terminar de atender a la persona la saco del aeropuerto
             cabina_frontera[0] = None
 
         if cabina_frontera[1] == None:
-            cabina_frontera[1] = time_in_world(elapsed_time + randint(3,10)) #si la cabina esta vacia le doy una hora a la que termino de atender a una persona
+            cabina_frontera[1] = time_in_world(elapsed_time + randint(3,5)) #si la cabina esta vacia le doy una hora a la que termino de atender a una persona
         elif (cabina_frontera[1] <= time_in_world(elapsed_time)) and (len(cola_frontera) > 0):
             cola_frontera.pop(0) #si ya es la hora de terminar de atender a la persona la saco del aeropuerto
             cabina_frontera[1] = None
@@ -99,7 +99,11 @@ def pasan_a_frontera(avion, cola_frontera, cabina_frontera, elapsed_time): #en e
 
 
 def pasan_al_avion(sala_de_espera_2, avion, elapsed_time): #en esta funcion 30 min antes de los vuelos meto a los de sala de espra 2 en el avion
-     if (time_in_world(elapsed_time) >= 11.5 and time_in_world(elapsed_time) < 12) or (time_in_world(elapsed_time) >= 4.5 and time_in_world(elapsed_time) < 5): #si estoy en el intervalo de abordar para alguno de los dos vuelos
-         while len(sala_de_espera_2) > 0:
+    if (time_in_world(elapsed_time) >= 11.5 and time_in_world(elapsed_time) < 12) or (time_in_world(elapsed_time) >= 4.5 and time_in_world(elapsed_time) < 5): #si estoy en el intervalo de abordar para alguno de los dos vuelos
+        while len(sala_de_espera_2) > 0:
             avion.append(sala_de_espera_2.pop(0))
+    
+    if (time_in_world(elapsed_time) == 12) or (time_in_world(elapsed_time) == 5):
+        avion.clear()
+
          
