@@ -2,7 +2,6 @@ import os
 import time
 from random import randint
 import generalFunctions as gf
-from tqdm import tqdm
 
 os.system('clear')
 
@@ -34,7 +33,7 @@ def main():
 
     #region funcionamiento del aeropuerto
 
-    for elapsed_time in tqdm(range(601)): #elapsed_time son los minutos que han pasado desde que se abre el aeropuerto
+    for elapsed_time in range(601): #elapsed_time son los minutos que han pasado desde que se abre el aeropuerto
         #llegan los pasajeros y entran a la sala de espera 
         gf.pasan_a_sala_de_espera(lista_pasajeros, sala_de_espera_1, elapsed_time)
 
